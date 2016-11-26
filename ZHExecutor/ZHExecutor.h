@@ -61,4 +61,3 @@ public :
     */
     int ClearTask(ZHEXECUTORTASK *pTask);
 };
-

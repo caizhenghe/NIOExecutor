@@ -55,6 +55,3 @@ int ZHEXECUTOR::ClearTask(ZHEXECUTORTASK *pTask)
     pTask->pArgs = { 0 };
     return ZHEXECUTOR_EC_OK;
 }
-
-
-

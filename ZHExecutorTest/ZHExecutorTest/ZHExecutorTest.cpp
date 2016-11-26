@@ -1,6 +1,7 @@
 #define  _CRT_SECURE_NO_WARNINGS
 
 #include "ZHExecutor.h"
+//#include "ZHThread.h"
 
 static int Execute(BASEEXECUTORTASK *pArgs)
 {
@@ -18,7 +19,6 @@ static int Execute(BASEEXECUTORTASK *pArgs)
     }
     return iExit;
 }
-
 int main()
 {
     int iInput;
@@ -40,6 +40,5 @@ int main()
         pTask->iState = ZHEXECUTOR_STATE_START;
         pExecutor->Submit(Execute, pTask);
     }
-
     return 0;
 }
