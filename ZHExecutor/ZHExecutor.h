@@ -21,10 +21,10 @@ typedef struct ZHEXECUTORTASK {
 }ZHEXECUTORTASK;
 
 class ZHEXECUTOR{
-private :
-     volatile int bStop;
-     ZHEXECUTORTASK pTaskList[ZHEXECUTOR_TASK_MAX];
-public :
+private:
+    volatile int bStop;
+    ZHEXECUTORTASK pTaskList[ZHEXECUTOR_TASK_MAX];
+public:
     ZHEXECUTOR();
     ~ZHEXECUTOR();
     /**
@@ -61,4 +61,3 @@ public :
     */
     int ClearTask(ZHEXECUTORTASK *pTask);
 };
-

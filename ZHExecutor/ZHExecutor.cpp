@@ -3,14 +3,11 @@
 ZHEXECUTOR::ZHEXECUTOR()
 {
     bStop = 0;
-    for (int i = 0; i < ZHEXECUTOR_TASK_MAX; i++)
-    {
-        pTaskList[i] = { 0 };
-    }
+    memset(pTaskList, 0x0, sizeof(ZHEXECUTORTASK)*ZHEXECUTOR_TASK_MAX);
 }
 
 ZHEXECUTOR::~ZHEXECUTOR(){
-// nothing todo
+    // nothing todo
 }
 
 void *ZHEXECUTOR::ThreadFunc(void *pArgs)
@@ -55,6 +52,3 @@ int ZHEXECUTOR::ClearTask(ZHEXECUTORTASK *pTask)
     pTask->pArgs = { 0 };
     return ZHEXECUTOR_EC_OK;
 }
-
-
-

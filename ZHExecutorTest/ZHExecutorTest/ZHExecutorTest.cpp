@@ -18,7 +18,6 @@ static int Execute(BASEEXECUTORTASK *pArgs)
     }
     return iExit;
 }
-
 int main()
 {
     int iInput;
@@ -40,6 +39,5 @@ int main()
         pTask->iState = ZHEXECUTOR_STATE_START;
         pExecutor->Submit(Execute, pTask);
     }
-
     return 0;
 }
