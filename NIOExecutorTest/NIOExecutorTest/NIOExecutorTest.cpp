@@ -1,17 +1,17 @@
 #define  _CRT_SECURE_NO_WARNINGS
 
-#include "ZHExecutor.h"
+#include "NIOExecutor.h"
 
 static int Execute(BASEEXECUTORTASK *pArgs)
 {
     int iExit = 0;
     switch (pArgs->iState)
     {
-    case ZHEXECUTOR_STATE_START:
+    case NIOEXECUTOR_STATE_START:
         printf("Task %d execute...\n", pArgs->iTaskId);
-        pArgs->iState = ZHEXECUTOR_STATE_STOP;
+        pArgs->iState = NIOEXECUTOR_STATE_STOP;
         break;
-    case ZHEXECUTOR_STATE_STOP:
+    case NIOEXECUTOR_STATE_STOP:
         printf("Task %d stop...\n", pArgs->iTaskId);
         iExit = -1;
         break;
@@ -23,10 +23,10 @@ int main()
     int iInput;
     static int iTaskId = 0;
     printf("启动状态机...\n");
-    ZHTHREAD Thread = { 0 };
-    ZHEXECUTOR *pExecutor = new ZHEXECUTOR;
+    THREAD Thread = { 0 };
+    NIOEXECUTOR *pExecutor = new NIOEXECUTOR;
 
-    ZHThreadCreate(ZHEXECUTOR::ThreadFunc, pExecutor, &Thread);
+    ThreadCreate(NIOEXECUTOR::ThreadFunc, pExecutor, &Thread);
 
     printf("添加任务...\n");
     while (1){
@@ -36,7 +36,7 @@ int main()
         /* 在退出任务列表时释放内存，不会导致内存泄露 */
         BASEEXECUTORTASK *pTask = new BASEEXECUTORTASK;
         pTask->iTaskId = ++iTaskId;
-        pTask->iState = ZHEXECUTOR_STATE_START;
+        pTask->iState = NIOEXECUTOR_STATE_START;
         pExecutor->Submit(Execute, pTask);
     }
     return 0;

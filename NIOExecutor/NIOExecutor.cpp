@@ -1,21 +1,21 @@
-#include "ZHExecutor.h"
+#include "NIOExecutor.h"
 
-ZHEXECUTOR::ZHEXECUTOR()
+NIOEXECUTOR::NIOEXECUTOR()
 {
     bStop = 0;
-    memset(pTaskList, 0x0, sizeof(ZHEXECUTORTASK)*ZHEXECUTOR_TASK_MAX);
+    memset(pTaskList, 0x0, sizeof(NIOEXECUTORTASK)*NIOEXECUTOR_TASK_MAX);
 }
 
-ZHEXECUTOR::~ZHEXECUTOR(){
+NIOEXECUTOR::~NIOEXECUTOR(){
     // nothing todo
 }
 
-void *ZHEXECUTOR::ThreadFunc(void *pArgs)
+void *NIOEXECUTOR::ThreadFunc(void *pArgs)
 {
-    ZHEXECUTOR *pExecutor = (ZHEXECUTOR *)pArgs;
+    NIOEXECUTOR *pExecutor = (NIOEXECUTOR *)pArgs;
     while (!pExecutor->bStop)
     {
-        for (int i = 0; i < ZHEXECUTOR_TASK_MAX; i++)
+        for (int i = 0; i < NIOEXECUTOR_TASK_MAX; i++)
         {
             if (pExecutor->pTaskList[i].pFunc)
             {
@@ -31,24 +31,24 @@ void *ZHEXECUTOR::ThreadFunc(void *pArgs)
     return NULL;
 }
 
-int ZHEXECUTOR::Submit(int(*pFunc)(BASEEXECUTORTASK *), BASEEXECUTORTASK *pArgs)
+int NIOEXECUTOR::Submit(int(*pFunc)(BASEEXECUTORTASK *), BASEEXECUTORTASK *pArgs)
 {
-    for (int i = 0; i < ZHEXECUTOR_TASK_MAX; i++)
+    for (int i = 0; i < NIOEXECUTOR_TASK_MAX; i++)
     {
         if (pTaskList[i].pFunc == NULL)
         {
-            ZHEXECUTORTASK *pTask = &pTaskList[i];
+            NIOEXECUTORTASK *pTask = &pTaskList[i];
             pTask->pFunc = pFunc;
             pTask->pArgs = pArgs;
             break;
         }
     }
-    return ZHEXECUTOR_EC_OK;
+    return NIOEXECUTOR_EC_OK;
 }
 
-int ZHEXECUTOR::ClearTask(ZHEXECUTORTASK *pTask)
+int NIOEXECUTOR::ClearTask(NIOEXECUTORTASK *pTask)
 {
     pTask->pFunc = NULL;
     pTask->pArgs = { 0 };
-    return ZHEXECUTOR_EC_OK;
+    return NIOEXECUTOR_EC_OK;
 }

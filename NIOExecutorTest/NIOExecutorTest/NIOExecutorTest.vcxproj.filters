@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ZHExecutorTest.cpp">
+    <ClCompile Include="NIOExecutorTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\ZHExecutor\ZHExecutor.cpp">
+    <ClCompile Include="..\..\NIOExecutor\NIOExecutor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\ZHThread\ZHThread.c">
+    <ClCompile Include="..\..\ThreadUtils\ThreadUtils.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\ZHExecutor\ZHExecutor.h">
+    <ClInclude Include="..\..\NIOExecutor\NIOExecutor.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\ZHThread\ZHThread.h">
+    <ClInclude Include="..\..\ThreadUtils\ThreadUtils.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
-#ifndef _ZH_THREAD_H_
-#define _ZH_THREAD_H_
+#ifndef _THREAD_UTILS_H_
+#define _THREAD_UTILS_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -7,19 +7,19 @@ extern "C" {
 #include<process.h>
 #include<windows.h>
 
-#define ZHTHREAD_EC_OK 0
-#define ZHTHREAD_EC_FAILURE -1
+#define THREAD_EC_OK 0
+#define THREAD_EC_FAILURE -1
 
 /*线程描述符结构体*/
-typedef struct ZHTHREAD{
+typedef struct THREAD{
     HANDLE hThread;
     DWORD  lThreadID;
     void *(* pFunc)(void *);
     void *pArgs;
     void *pDataResult;
-}ZHTHREAD;
+}THREAD;
 
-int ZHThreadCreate(void *(* pFunc)(void *),void *pArgs,ZHTHREAD *pThread);
+int ThreadCreate(void *(* pFunc)(void *),void *pArgs,THREAD *pThread);
 
 unsigned int __stdcall ThreadFun(void *pThread);
 

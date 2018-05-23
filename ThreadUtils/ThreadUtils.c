@@ -1,6 +1,6 @@
-#include "ZHThread.h"
+#include "ThreadUtils.h"
 
-int ZHThreadCreate(void *(*pFunc)(void *), void *pArgs, ZHTHREAD *pThread)
+int ThreadCreate(void *(*pFunc)(void *), void *pArgs, THREAD *pThread)
 {
     pThread->pFunc = pFunc;
     pThread->pArgs = pArgs;
@@ -9,10 +9,10 @@ int ZHThreadCreate(void *(*pFunc)(void *), void *pArgs, ZHTHREAD *pThread)
 
     if (pThread->hThread == NULL)
     {
-        return (ZHTHREAD_EC_FAILURE);
+        return (THREAD_EC_FAILURE);
     }
 
-    return (ZHTHREAD_EC_OK);
+    return (THREAD_EC_OK);
 }
 
 unsigned int __stdcall ThreadFun(void *pThread)
